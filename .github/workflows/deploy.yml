@@ -1,0 +1,57 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+    
+    - name: Debug AWS Access Key ID
+      run: |
+        echo "AWS_ACCESS_KEY_ID starts with: $(echo $AWS_ACCESS_KEY_ID | cut -c1-4)"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    
+    - name: Debug AWS Secret Access Key
+      run: |
+        echo "AWS_ACCESS_KEY_ID starts with: $(echo $AWS_SECRET_ACCESS_KEY | cut -c1-4)"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-southeast-1   
+
+    - name: Verify S3 Login
+      run: aws s3 ls
+      env:
+        AWS_REGION: ap-southeast-1
+
+    - name: Deploy to S3
+      env:
+        AWS_REGION: ap-southeast-1
+        S3_BUCKET: citysparks3bucket
+      run: |
+        aws s3 sync out/ s3://$S3_BUCKET --delete
+        echo "Deployed to S3 bucket"
