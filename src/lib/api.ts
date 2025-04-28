@@ -1,4 +1,4 @@
-const API_BASE_URL = 'DNS name: CitySparkLoadBalancer-539527486.ap-southeast-1.elb.amazonaws.com';
+const API_BASE_URL = 'DNS name: CitySparkLoadBalancer-539527486.ap-southeast-1.elb.amazonaws.com/api';
 
 export const API = {
   auth: {

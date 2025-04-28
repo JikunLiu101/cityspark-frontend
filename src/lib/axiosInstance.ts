@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-  baseURL: 'DNS name: CitySparkLoadBalancer-539527486.ap-southeast-1.elb.amazonaws.com',
+  baseURL: 'DNS name: CitySparkLoadBalancer-539527486.ap-southeast-1.elb.amazonaws.com/api',
   headers: {
     'Content-Type': 'application/json'
   }
