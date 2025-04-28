@@ -35,7 +35,9 @@ export default function ProfilePage() {
         setBirthday(data.birthday || '')
         setImageId(data.imageId || null)
         setPreferences(data.preferences || [])
-
+        if (data && data.personId) {
+          localStorage.setItem('personId', data.personId.toString()) // ✅ Store globally
+        }
 
         // 2. Fetch all available tags (preference options)
         const tagsResponse = await axiosInstance.get(`/tags`)
