@@ -39,6 +39,10 @@ export default function EventPage() {
   const eventId = typeof window !== 'undefined' ? localStorage.getItem('selectedEventId') : null
   const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
 
+  const [subject, setSubject] = useState('')
+  const [content, setContent] = useState('')
+  const [notifMessage, setNotifMessage] = useState('')
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -161,17 +165,71 @@ export default function EventPage() {
 
 
       {isOrganizer && (
-        <div className="mt-8">
-          <h2 className="text-2xl font-semibold mb-4">Participants</h2>
-          <div className="space-y-2">
-            {participants.map((p) => (
-              <div key={p.id} className="p-2 border rounded">
-                <b>Participant Name:</b> {p.person.name}<br></br>
-                <b>Role:</b> {p.role}
-              </div>
-            ))}
+        <>
+        <div className="mt-10 border-t pt-6"></div>
+          <h2 className="text-2xl font-semibold mb-4">Send Notification</h2>
+            {notifMessage && <p className="text-green-400">{notifMessage}</p>}
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault()
+              try {
+                await axiosInstance.post('/notifications/event', null, {
+                  params: {
+                    organizerId: personId,
+                    eventId: eventId,
+                    subject,
+                    content,
+                  },
+                })
+                setNotifMessage('Notification sent successfully!')
+                setSubject('')
+                setContent('')
+              } catch (err) {
+                console.error(err)
+                alert('Failed to send notification')
+              }
+            } }
+            className="space-y-4"
+          >
+          <div>
+            <label className="block mb-1">Subject</label>
+            <input
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              className="w-full p-2 rounded text-black border border-white bg-opacity-90"
+              required />
           </div>
-        </div>
+          <div>
+            <label className="block mb-1">Content</label>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              className="w-full p-2 rounded text-black border border-white bg-opacity-90"
+              rows={4}
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          >
+            Send Notification
+          </button>
+          </form>
+        <div className="mt-10 border-t pt-6"></div>
+        <div className="mt-8">
+            <h2 className="text-2xl font-semibold mb-4">Participants</h2>
+            <div className="space-y-2">
+              {participants.map((p) => (
+                <div key={p.id} className="p-2 border rounded">
+                  <b>Participant Name:</b> {p.person.name}<br></br>
+                  <b>Role:</b> {p.role}
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </div>
     </div>

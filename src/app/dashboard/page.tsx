@@ -62,6 +62,10 @@ export default function DashboardPage() {
     router.push('/profile')
   }
 
+  const handleNotificationClick = () => {
+    router.push('/notification')
+  }
+
   const handleCreateEventClick = () => {
     router.push('/events/create')
   }
@@ -111,6 +115,12 @@ export default function DashboardPage() {
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <div className="space-x-4">
+          <button
+              className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-gray-700"
+              onClick={handleNotificationClick}
+            >
+              Notification
+            </button>
             <button
               className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-gray-700"
               onClick={handleProfileClick}
