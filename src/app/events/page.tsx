@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axiosInstance from '@/lib/axiosInstance'
+import CitySparkHeader from '@/component.tsx/CitySparkHeader'
 
 interface Event {
   id: number
@@ -129,14 +130,16 @@ export default function EventPage() {
   if (!event) return <p>Event not found.</p>
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
+          <CitySparkHeader />
     <div className="max-w-4xl mx-auto mt-12 p-6 border rounded shadow space-y-6">
       <h1 className="text-3xl font-bold">{event.title}</h1>
-      <p className="text-gray-700">{event.description}</p>
-      <p className="text-gray-600">Location: {event.location}</p>
-      <p className="text-gray-600">Start: {new Date(event.eventStartDt).toLocaleString()}</p>
-      <p className="text-gray-600">End: {new Date(event.eventEndDt).toLocaleString()}</p>
-      <p className="text-gray-600">Status: {event.status}</p>
-      <p className="text-gray-600">Category: {event.tag?.name}</p>
+      <p className="text-white">{event.description}</p>
+      <p className="text-white">Location: {event.location}</p>
+      <p className="text-white">Start: {new Date(event.eventStartDt).toLocaleString()}</p>
+      <p className="text-white">End: {new Date(event.eventEndDt).toLocaleString()}</p>
+      <p className="text-white">Status: {event.status}</p>
+      <p className="text-white">Category: {event.tag?.name}</p>
 
       {!isParticipant ? (
         <button
@@ -168,6 +171,7 @@ export default function EventPage() {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

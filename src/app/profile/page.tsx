@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axiosInstance from '@/lib/axiosInstance'
+import CitySparkHeader from '@/component.tsx/CitySparkHeader'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -90,6 +91,8 @@ export default function ProfilePage() {
   if (loading) return <p>Loading...</p>
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
+          <CitySparkHeader />
     <div className="max-w-2xl mx-auto mt-12 p-6 border rounded shadow space-y-6">
       <h1 className="text-2xl font-bold">Profile</h1>
       {error && <p className="text-red-500">{error}</p>}
@@ -170,6 +173,7 @@ export default function ProfilePage() {
           Save Profile
         </button>
       </form>
+    </div>
     </div>
   )
 }

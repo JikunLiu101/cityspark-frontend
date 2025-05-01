@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axiosInstance from '@/lib/axiosInstance'
 import { API } from '@/lib/api'
+import CitySparkHeader from '@/component.tsx/CitySparkHeader'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -29,6 +30,8 @@ export default function RegisterPage() {
   }
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
+          <CitySparkHeader />
     <div className="max-w-md mx-auto mt-24 p-6 border rounded shadow">
       <h1 className="text-xl font-semibold mb-4">Register</h1>
       {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -70,6 +73,7 @@ export default function RegisterPage() {
       <div className="mt-4 text-sm text-center">
         Already have an account? <Link href="/login" className="text-blue-600 hover:underline">Login here</Link>
       </div>
+    </div>
     </div>
   )
 }
