@@ -30,8 +30,9 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
-          <CitySparkHeader />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-black bg-opacity-90 rounded-lg shadow-lg p-8 space-y-6">
+        <CitySparkHeader />
     <div className="max-w-md mx-auto mt-24 p-6 border rounded shadow">
       <h1 className="text-xl font-semibold mb-4">Register</h1>
       {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -73,6 +74,7 @@ export default function RegisterPage() {
       <div className="mt-4 text-sm text-center">
         Already have an account? <Link href="/login" className="text-blue-600 hover:underline">Login here</Link>
       </div>
+    </div>
     </div>
     </div>
   )

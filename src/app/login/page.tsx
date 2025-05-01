@@ -59,6 +59,17 @@ export default function LoginPage() {
             <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
               Log In
             </button>
+            <div className="text-center">
+              <p className="text-sm text-gray-300">
+                Don't have an account?{' '}
+                <span
+                  className="text-blue-400 hover:underline cursor-pointer"
+                  onClick={() => router.push('/register')}
+                >
+                  Register here
+                </span>
+              </p>
+            </div>
           </form>
         </div>
       </div>

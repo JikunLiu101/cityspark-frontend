@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axiosInstance from '@/lib/axiosInstance'
 import CitySparkHeader from '@/component.tsx/CitySparkHeader'
+import BackButton from '@/component.tsx/BackButton'
 
 interface Event {
   id: number
@@ -133,6 +134,7 @@ export default function EventPage() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
           <CitySparkHeader />
     <div className="max-w-4xl mx-auto mt-12 p-6 border rounded shadow space-y-6">
+      <BackButton />
       <h1 className="text-3xl font-bold">{event.title}</h1>
       <p className="text-white">{event.description}</p>
       <p className="text-white">Location: {event.location}</p>

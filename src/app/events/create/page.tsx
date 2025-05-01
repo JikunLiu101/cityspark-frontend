@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axiosInstance from '@/lib/axiosInstance'
 import CitySparkHeader from '@/component.tsx/CitySparkHeader'
+import BackButton from '@/component.tsx/BackButton'
 
 export default function CreateEventPage() {
   const router = useRouter()
@@ -80,6 +81,7 @@ export default function CreateEventPage() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
           <CitySparkHeader />
     <div className="max-w-2xl mx-auto mt-12 p-6 border rounded shadow space-y-6">
+    <BackButton />
       <h1 className="text-2xl font-bold">Create Event</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

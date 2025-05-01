@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axiosInstance from '@/lib/axiosInstance'
 import CitySparkHeader from '@/component.tsx/CitySparkHeader'
+import BackButton from '@/component.tsx/BackButton'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -37,7 +38,7 @@ export default function ProfilePage() {
         setImageId(data.imageId || null)
         setPreferences(data.preferences || [])
         if (data && data.personId) {
-          localStorage.setItem('personId', data.personId.toString()) // ✅ Store globally
+          localStorage.setItem('personId', data.personId.toString())
         }
 
         // 2. Fetch all available tags (preference options)
@@ -76,7 +77,7 @@ export default function ProfilePage() {
         preferences
       })
       alert('Profile saved successfully')
-      setError('') // ✅ Clear any previous error
+      setError('')
     } catch (err) {
       setError('Failed to save profile')
     }
@@ -94,6 +95,7 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-800 via-purple-800 to-black p-6 text-white">
           <CitySparkHeader />
     <div className="max-w-2xl mx-auto mt-12 p-6 border rounded shadow space-y-6">
+      <BackButton />
       <h1 className="text-2xl font-bold">Profile</h1>
       {error && <p className="text-red-500">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
